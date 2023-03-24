@@ -1,0 +1,41 @@
+{
+  "name": "create-ektfe-cli-app",
+  "version": "1.2.0",
+  "description": "Create CLI App",
+  "main": "lib/index.js",
+  "type": "module",
+  "bin": {
+    "create-ektfe-cli-app": "./lib/index.js"
+  },
+  "files": [
+    "lib",
+    "template"
+  ],
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "cross-env rimraf ./lib && tsc"
+  },
+  "author": "gyt95",
+  "license": "MIT",
+  "keywords": [
+    "ektfe",
+    "frontend",
+    "cli"
+  ],
+  "dependencies": {
+    "boxen": "^7.0.2",
+    "consola": "^2.15.3",
+    "fast-glob": "^3.2.12",
+    "fs-extra": "^11.1.0",
+    "gradient-string": "^2.0.2",
+    "inquirer": "^9.1.4",
+    "picocolors": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.1",
+    "@types/gradient-string": "^1.1.2",
+    "@types/inquirer": "^9.0.3",
+    "cross-env": "^7.0.3",
+    "rimraf": "^4.4.0"
+  }
+}
