@@ -1,6 +1,6 @@
 {
   "name": "create-ektfe-cli-app",
-  "version": "1.2.0",
+  "version": "1.2.2",
   "description": "Create CLI App",
   "main": "lib/index.js",
   "type": "module",
