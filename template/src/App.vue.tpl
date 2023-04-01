@@ -1,16 +1,24 @@
 <template>
   <a-config-provider>
-    <TheContainer name="dispatch">
+    <<%= platformCapitalized %>ProLayout :menu="MENU">
       <component ref="viewbox" :is="getCurrView"></component>
-    </TheContainer>
+    </<%= platformCapitalized %>ProLayout>
   </a-config-provider>
 </template>
 
 <script setup lang="ts">
-import { computed, toRefs } from 'vue'
-import { useGlobalStore } from '@next/core'
+import { useGlobalStore } from '@<%= platformName %>/core'
 const globalStore = useGlobalStore()
 const { currView } = toRefs(globalStore)
+
+const MENU = [
+  {
+    title: '模块标题',
+    icon: 'aaa-icon',
+    code: 'XxxView',
+    num: 0
+  }
+]
 
 const getCurrView = computed(() => {
   if (currView.value === 'xxxView')

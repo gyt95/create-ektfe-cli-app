@@ -183,6 +183,7 @@ async function run() {
     platformName: platformName,
     projectName: projectName,
     htmlName: htmlName,
+    platformCapitalized: platformName.charAt(0).toLocaleUpperCase() + platformName.slice(1)
   }
 
   // 目标目录的路径 C:\xxx\next\nsft
