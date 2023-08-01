@@ -15,7 +15,7 @@ const activeName = ref('firstTab')
 
 const TABS = [
   {
-    label: 'xxx',
+    label: 'Label Name',
     prop: 'firstTab',
     component: defineAsyncComponent(() => import('./components/Info.vue')),
   },

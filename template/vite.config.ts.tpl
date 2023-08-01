@@ -8,6 +8,6 @@ export default defineConfig({
   ...ViteConfig({
     htmlName,
     dirname: __dirname,
-    // proxy_url: 'http://192.168.2.130:9756',
+    outputPath: '<%= platformName %>',
   }),
 })

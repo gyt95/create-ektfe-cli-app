@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@next/core": "workspace:^1.0.0",
-    "@next/pro-components": "workspace:^1.0.0"
+    "@next/pro-components": "workspace:^1.0.0",
+    "@<%= platformName %>/core": "workspace:^1.0.0"
   }
 }

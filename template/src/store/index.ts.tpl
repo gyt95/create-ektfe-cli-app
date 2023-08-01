@@ -12,7 +12,7 @@ export type State = {
   data: ExampleLis[]
 }
 
-export const useCarStore = defineStore('<%= projectName %>', {
+export const useStore = defineStore('<%= projectName %>', {
   state: (): State => {
     return {
       data: [],

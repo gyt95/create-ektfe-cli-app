@@ -13,17 +13,19 @@ const { currView } = toRefs(globalStore)
 
 const MENU = [
   {
-    title: '模块标题',
-    icon: 'aaa-icon',
-    code: 'XxxView',
-    num: 0
+    title: '<%= viewTitle %>',
+    icon: '<%= projectName %>-icon',
+    code: '<%= viewName %>',
+    num: 0,
   }
 ]
 
-const getCurrView = computed(() => {
-  if (currView.value === 'xxxView')
-    return defineAsyncComponent(() => import('@/containers/xxxView/index.vue'))
-})
+const getCurrView = computed(() => VIEW[unref(currView) as keyof typeof VIEW])
+const VIEW = {
+  <%= viewName %>: defineAsyncComponent(
+    () => import('@/containers/<%= viewName %>/index.vue')
+  ),
+}
 </script>
 
 <style lang="less" scoped></style>

@@ -20,6 +20,8 @@ interface Inputs {
   platformName: string
   projectName: string
   htmlName: string
+  viewName: string
+  viewTitle: string
 }
 
 async function run() {
@@ -42,7 +44,7 @@ async function run() {
     {
       type: 'input',
       name: 'title',
-      message: '新项目标题叫什么？',
+      message: '新项目标题叫什么？如：食材计划',
     },
   ])
 
@@ -71,7 +73,7 @@ async function run() {
       type: 'list',
       name: 'type',
       choices: currentPlatforms,
-      message: '当前项目属于哪个平台的？',
+      message: '当前项目属于哪个平台的？请选择：',
     },
   ])
 
@@ -117,7 +119,24 @@ async function run() {
     {
       type: 'input',
       name: 'projectName',
-      message: '新项目的英文名称叫什么？',
+      message: '新项目的英文名称叫什么？如：food-plan',
+    },
+  ])
+
+  if (!projectName) return
+
+  const { viewName } = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'viewName',
+      message: '新项目页面的首个模块的英文名称叫什么？如：CreateView',
+    },
+  ])
+  const { viewTitle } = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'viewTitle',
+      message: '新项目页面的首个模块的中文名称叫什么？如：创建计划',
     },
   ])
 
@@ -183,7 +202,10 @@ async function run() {
     platformName: platformName,
     projectName: projectName,
     htmlName: htmlName,
-    platformCapitalized: platformName.charAt(0).toLocaleUpperCase() + platformName.slice(1)
+    platformCapitalized:
+      platformName.charAt(0).toLocaleUpperCase() + platformName.slice(1),
+    viewName: viewName || 'XxxView',
+    viewTitle: viewTitle || '模块标题',
   }
 
   // 目标目录的路径 C:\xxx\next\nsft
@@ -209,6 +231,15 @@ async function run() {
     // 4.复制模板
     copyTpl(filePath, outputPath, outputDir, inputs)
   })
+
+  if (inputs.viewName && inputs.viewName !== 'XxxView') {
+    const oldPath = path.join(outputDir, 'src/containers/XxxView')
+    const newViewPath = path.join(
+      outputDir,
+      'src/containers/' + inputs.viewName
+    )
+    fs.renameSync(oldPath, newViewPath)
+  }
 
   // 初始化项目成功后提示
   end(inputs)
@@ -254,7 +285,7 @@ function end(inputs: Inputs) {
   )
   consola.success(
     `尝试执行命令 ${color.yellow(
-      `pnpm i && pnpm --filter @${platformName}/${projectName} dev`
+      `pnpm i && pnpm -F @${platformName}/${projectName} dev`
     )}`
   )
 }
